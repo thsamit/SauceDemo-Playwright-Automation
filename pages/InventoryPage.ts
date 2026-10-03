@@ -53,8 +53,11 @@ export class InventoryPage extends BasePage {
     }
 
     async getShoppingCartBadgeCount() {
-        const badgeText = await this.shoppingCartBadge.textContent();
-        return badgeText ? parseInt(badgeText) : 0;
+        if (await this.shoppingCartBadge.isVisible()) {
+            const badgeText = await this.shoppingCartBadge.textContent();
+            return badgeText ? parseInt(badgeText, 10) : 0;
+        }
+        return 0;
     }
 
     async goToCart() {
