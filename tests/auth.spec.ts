@@ -5,9 +5,10 @@ test.describe('Authentication Tests', () => {
         await loginPage.goto();
     });
 
-    test('TC_AUTH_001 - Verify valid user login', async ({ page, loginPage }) => {
+    test('TC_AUTH_001 - Verify valid user login', async ({ page, loginPage, inventoryPage }) => {
         await loginPage.login(process.env.STANDARD_USER!, process.env.STANDARD_PASSWORD!);
         await expect(page).toHaveURL(/.*inventory.html/);
+        await expect(inventoryPage.inventoryItems).toHaveCount(6);
     });
 
     test('TC_AUTH_002 - Verify locked out user login', async ({ loginPage }) => {
