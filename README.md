@@ -47,7 +47,7 @@ SauceDemo Playwright Automation/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/<your-username>/SauceDemo-Playwright-Automation.git
+git clone https://github.com/thsamit/SauceDemo-Playwright-Automation.git
 cd SauceDemo-Playwright-Automation
 ```
 
