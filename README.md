@@ -1,4 +1,4 @@
-# 🧪 SauceDemo Playwright Automation
+# SauceDemo Playwright Automation
 
 End-to-end test automation framework for [SauceDemo](https://www.saucedemo.com) — a sample e-commerce web application — built with **Playwright** and **TypeScript** using the **Page Object Model (POM)** design pattern.
 
