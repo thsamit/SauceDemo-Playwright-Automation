@@ -17,11 +17,7 @@ test.describe('Checkout Flow Tests', () => {
         expect(await checkoutCompletePage.getCompleteHeaderText()).toContain('Thank you for your order!');
     });
 
-    test('TC_CHK_002 - Verify that appropriate validation errors are displayed when submitting empty or incomplete user information during checkout', async ({
-        checkoutStepOnePage,
-        checkoutStepTwoPage,
-        checkoutCompletePage,
-    }) => {
+    test('TC_CHK_002 - Verify that appropriate validation errors are displayed when submitting empty or incomplete user information during checkout', async ({ checkoutStepOnePage }) => {
         await checkoutStepOnePage.clickContinue();
         expect(await checkoutStepOnePage.getErrorMessage()).toContain('Error: First Name is required');
 
@@ -34,10 +30,7 @@ test.describe('Checkout Flow Tests', () => {
         expect(await checkoutStepOnePage.getErrorMessage()).toContain('Error: Postal Code is required');
     });
 
-    test('TC_CHK_003 - Verify that item subtotal, tax, and total price calculations are accurate on the checkout overview page ', async ({
-        checkoutStepOnePage,
-        checkoutStepTwoPage,
-    }) => {
+    test('TC_CHK_003 - Verify that item subtotal, tax, and total price calculations are accurate on the checkout overview page ', async ({ checkoutStepOnePage, checkoutStepTwoPage }) => {
         await checkoutStepOnePage.fillCheckoutInformation('John', 'Doe', '12345');
         await checkoutStepOnePage.clickContinue();
         const itemTotal = await checkoutStepTwoPage.getItemTotal();
@@ -47,9 +40,10 @@ test.describe('Checkout Flow Tests', () => {
         expect(itemTotal + tax).toBeCloseTo(total, 2);
     });
 
-    test('TC_CHK_004 - Verify that the user can cancel the checkout process and return to the cart page', async ({ checkoutStepOnePage, checkoutStepTwoPage }) => {
+    test('TC_CHK_004 - Verify that the user can cancel the checkout process and return to the cart page', async ({ page, checkoutStepOnePage, checkoutStepTwoPage }) => {
         await checkoutStepOnePage.fillCheckoutInformation('John', 'Doe', '12345');
         await checkoutStepOnePage.clickContinue();
         await checkoutStepTwoPage.clickCancel();
+        await expect(page).toHaveURL(/.*inventory.html/);
     });
 });

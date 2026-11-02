@@ -6,12 +6,12 @@ test.describe('Shopping Cart Tests', () => {
         await loginPage.login(process.env.STANDARD_USER!, process.env.STANDARD_PASSWORD!);
     });
 
-    test('TC_CART_001 - Verify adding an item to the cart', async ({ inventoryPage }) => {
+    test('TC_CART_001 - Verify that adding an item to the cart updates the cart badge count', async ({ inventoryPage }) => {
         await inventoryPage.addItemToCartByName('Sauce Labs Backpack');
         expect(await inventoryPage.getShoppingCartBadgeCount()).toBe(1);
     });
 
-    test('TC_CART_002 - Verify removing an item from the cart', async ({ inventoryPage, cartPage }) => {
+    test('TC_CART_002 - Verify that removing an item from the inventory page updates the cart badge count', async ({ inventoryPage, cartPage }) => {
         await inventoryPage.addItemToCartByName('Sauce Labs Backpack');
         await inventoryPage.goToCart();
         await cartPage.removeItemByName('Sauce Labs Backpack');

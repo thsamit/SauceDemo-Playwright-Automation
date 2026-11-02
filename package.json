@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "npx playwright test",
+    "test:headed": "npx playwright test --headed",
+    "test:ui": "npx playwright test --ui",
+    "test:report": "npx playwright show-report"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -14,7 +19,6 @@
     "typescript": "^7.0.2"
   },
   "dependencies": {
-    "dotenv": "^18.0.4",
-    "xlsx": "^0.18.5"
+    "dotenv": "^18.0.4"
   }
 }
